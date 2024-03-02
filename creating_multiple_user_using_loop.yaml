@@ -1,0 +1,20 @@
+---
+- name: "Creating multiple user on Host using looping"
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: "Creating account for {{item.name}}"
+      user:
+        name: '{{item.name}}'
+        password: '{{item.password}}'
+        comment: '{{item.email}}'
+      loop:  #or with_items:  or  with_file:  or  with_url:  and many more
+        - name: 'subham'
+          password: 'subham123'
+          email: 'subham@demo.com'
+        - name: 'bapun'
+          password: 'bapun123'
+          email: 'bapun@demo.com'
+        - name: 'sonali'
+          password: 'sonali123'
+          email: 'sonali@demo.com'

@@ -1,0 +1,16 @@
+---
+- name: 'Update Repostory based on Host OS'
+  hosts: all
+  become: yes
+  tasks:
+    - name: 'Update if the OS is Ubuntu and version 18'
+      apt:
+        update_cache: yes
+      when: ansible_facts['os_family'] == 'Debian' and ansible_facts['distribution_major_version'] == '18'
+    
+    - name: 'install nginx if host is a RedHat'
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes
+      when: ansible_facts['os_family'] == 'RedHat'
