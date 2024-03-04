@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: copy blog.txt
+      copy:
+        src: /usr/src/condition/blog.txt
+        dest: /opt/condition/blog.txt
+        owner: bob
+        group: bob
+        mode: 0640
+      when: inventory_hostname == "node01"
+    - name: copy blog.txt
+      copy:
+        src: /usr/src/condition/story.txt
+        dest: /opt/condition
+        owner: sam
+        group: sam
+        mode: 0400
+      when: inventory_hostname == "node02"

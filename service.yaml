@@ -1,0 +1,13 @@
+---
+- name: service utility
+  hosts: all
+  become: yes
+  tasks:
+    - name: install vsftpd
+      yum:
+        name: vsftpd
+        state: present
+    - name: start vsftpd
+      service:
+        name: vsftpd
+        state: started

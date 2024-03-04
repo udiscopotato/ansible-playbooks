@@ -1,0 +1,28 @@
+---
+- name: Some tasks
+  hosts: node01
+  become: true
+  tasks:
+    - name: creating blog.txt
+      file:
+        group: sam
+        path: /opt/news/blog.txt
+        state: touch
+
+- name: another tasks
+  hosts: node02
+  become: yes
+  tasks:
+    - name: creating story.txt
+      file:
+        path: /opt/news/story.txt
+        owner: sam
+        state: touch
+
+- hosts: node01
+  become: yes
+  tasks:
+    - name: create file.txt
+      copy:
+        dest: /opt/file.txt
+        content: "This file is created by Ansible!"

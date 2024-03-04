@@ -1,0 +1,18 @@
+---
+- hosts: node01
+  become: yes
+  tasks:
+    - name: Replacing text
+      replace:
+        path: /opt/music/blog.txt
+        regexp: Kodekloud
+        replace: Ansible
+
+- hosts: node02
+  become: yes
+  tasks:
+    - name: Replacing text
+      replace:
+        path: /opt/music/story.txt
+        regexp: Ansible
+        replace: Kodekloud
